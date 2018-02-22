@@ -120,4 +120,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # src/settings.py
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
