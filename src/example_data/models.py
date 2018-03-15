@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from datetime import date
 
-class TrafficLigt(models.Model):
+class TrafficLight(models.Model):
     name = models.TextField()
     street = models.TextField(blank=True, null=True)
     number = models.IntegerField(blank=True, null=True)
