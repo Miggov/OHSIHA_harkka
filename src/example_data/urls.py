@@ -1,19 +1,19 @@
 # accounts/urls.py
 from django.urls import path
 
-from . import views
+from .views import TrafficLights_create, TrafficLights_delete, TrafficLights_detail, TrafficLights_list, TrafficLights_update
 
 
 
 urlpatterns = [
-    path('create/', views.TraffictLights_create, name='create'),
-    path('detail/', views.TraffictLights_detail, name='detail'),
-    path('', views.TraffictLights_list, name='list'),
-    path('update/', views.TraffictLights_update, name='update'),
-    path('delete/', views.TraffictLights_delete, name='delete'),
+    path('', TrafficLights_list, name='list'),
+    path('create/', TrafficLights_create, name='create'),
+    path('detail/', TrafficLights_detail, name='detail'),
+    path('update/', TrafficLights_update, name='update'),
+    path('delete/', TrafficLights_delete, name='delete'),
 ]
 
-#"example_data.views.TraffictLights_home()"
+#"example_data.views.TrafficLights_home()"
 #urlpatterns = [
 #    path('TrafficLights/', views.SignUp.as_view(), name='signup'),
 #]

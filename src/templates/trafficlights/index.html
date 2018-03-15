@@ -11,10 +11,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <h1>{{ title }}is working</h1>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+        <ul>
+            {%for TrafficLight in TrafficLights %}
+                <a href="{% url 'update_TrafficLight' TrafficLight.identifier">
+                    <li> {{ TrafficLight.name}} </li>
+                </a>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'create' %}">New trafficlight</a>
         
     </body>
 </html>
