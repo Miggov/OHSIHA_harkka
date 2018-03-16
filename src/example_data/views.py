@@ -10,7 +10,7 @@ def TrafficLights_create(request):
 
     if form.is_valid():
         form.save()
-        return redirect('TrafficLights_list')
+        return redirect('list')
 
     return render(request, 'trafficlights/TrafficLightForm.html', {'form': form})
 
@@ -31,10 +31,16 @@ def TrafficLights_list(request):
     #        "title": "Please login"
    #     }
     return render(request, "trafficlights/index.html", {'TrafficLights': TrafficLights})
-    #return HttpResponse("<h1>list</h1>")
 
-def TrafficLights_update(request):
-    return HttpResponse("<h1>update</h1>")
+def TrafficLights_update(request, id):
+    trafficlight = TrafficLight.objects.get(identifier=id)
+    form = TrafficLightForm(request.POST or None, instance=TrafficLight)
+
+    if form.is_valid():
+        form.save()
+        return redirect('list')
+
+    return render(request, 'trafficlights/TrafficLightForm.html', {'form': form, 'TrafficLight':trafficlight})
 
 def TrafficLights_delete(request):
     return HttpResponse("<h1>delete</h1>")

@@ -13,7 +13,7 @@
     <body>
         <ul>
             {%for TrafficLight in TrafficLights %}
-                <a href="{% url 'update_TrafficLight' TrafficLight.identifier">
+                <a href="{% url 'update' TrafficLight.identifier %}">
                     <li> {{ TrafficLight.name}} </li>
                 </a>
             {% endfor %}
