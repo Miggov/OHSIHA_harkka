@@ -10,7 +10,7 @@ urlpatterns = [
     path('create/', TrafficLights_create, name='create'),
     path('detail/', TrafficLights_detail, name='detail'),
     path('update/<int:id>/', TrafficLights_update, name='update'),
-    path('delete/<int:ID>/', TrafficLights_delete, name='delete'),
+    path('delete/<int:id>/', TrafficLights_delete, name='delete'),
 ]
 
 #"example_data.views.TrafficLights_home()"

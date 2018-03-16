@@ -11,6 +11,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
+            {% block content %}
+            {% if user.is_authenticated %}
+              Hi {{ user.username }}!
+              <p><a href="{% url 'logout' %}">logout</a></p>
+            {% else %}
+              <p>You are not logged in</p>
+              <a href="{% url 'login' %}">login</a><p> or </p><a href="{% url 'signup' %}">Create an account</a>
+            {% endif %}
+            {% endblock %}
+
+        <h1>Traffic lights</h1>
         <ul>
             {%for TrafficLight in TrafficLights %}
                 <a href="{% url 'update' TrafficLight.identifier %}">
@@ -20,6 +31,8 @@
         </ul>
 
         <a href="{% url 'create' %}">New trafficlight</a>
-        
+
+
+                
     </body>
 </html>
