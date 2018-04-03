@@ -4,7 +4,7 @@ from .models import TrafficLight
 from .forms import TrafficLightForm
 
 
-#Creates net TrafficLight object after login
+#Creates new TrafficLight object after login
 def TrafficLights_create(request):
     form = TrafficLightForm(request.POST or None)
 
