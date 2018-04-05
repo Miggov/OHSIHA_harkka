@@ -28,3 +28,7 @@ def fetch_status(request):
     args = {'objects': objects}
     return redirect("/") #render(request, "dashboard.html", args)
 
+    def drawMap(request):
+        map_points = TrafficLight.objects.all()
+        return map_points
+

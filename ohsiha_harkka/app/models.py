@@ -6,7 +6,6 @@ from datetime import date
 class TrafficLight(models.Model):
     name = models.TextField(primary_key=True)
     last_updated = models.TextField(blank=True, null=True)
-    crossing = models.TextField(blank=True, null=True)
   #   idx = models.IntegerField(default="")
     status = models.TextField(default="")
 #    status = models.NullBooleanField(blank=True, null=True, default=None)
