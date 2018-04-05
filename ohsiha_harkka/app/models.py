@@ -4,7 +4,7 @@ from datetime import date
 
 #Class for TrafficLight object
 class TrafficLight(models.Model):
-    name = models.TextField()
+    name = models.TextField(primary_key=True)
     last_updated = models.TextField(blank=True, null=True)
     crossing = models.TextField(blank=True, null=True)
   #   idx = models.IntegerField(default="")
