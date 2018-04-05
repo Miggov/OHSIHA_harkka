@@ -1,5 +1,5 @@
 @echo off
-set "VIRTUAL_ENV=E:\Koodaus\OHSIHA\OHSIHA_harkka\ENV"
+set "VIRTUAL_ENV=E:\Koodaus\OHSIHA\OHSIHA_harkka_vituiksmän\ENV"
 
 if defined _OLD_VIRTUAL_PROMPT (
     set "PROMPT=%_OLD_VIRTUAL_PROMPT%"
