@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import TrafficLight
 import requests, json
 
@@ -26,5 +26,5 @@ def fetch_status(request):
 
     objects = TrafficLight.objects.all()
     args = {'objects': objects}
-    return render(request, "dashboard.html", args)
+    return redirect("/") #render(request, "dashboard.html", args)
 
