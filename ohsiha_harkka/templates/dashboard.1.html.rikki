@@ -16,7 +16,10 @@
         <form action = "app/update/" method = "get" id = "update"> 
         <input type = "submit" class = "button" id = "button1" value = "Lataa tiedot rajapinnasta" name = "updateAPI"></form>
 
-
+<div id="test">
+    {% load javascript_settings_tags %}
+    <script type="text/javascript">{% javascript_settings %}</script>
+</div>
 
         <div id="map" style="width: 500px; height: 400px;"></div>
 

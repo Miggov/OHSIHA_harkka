@@ -16,9 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
+#from app.models import TrafficLight
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='dashboard.html'), name='dashboard'),
     path('admin/', admin.site.urls),
     path('app/', include('app.urls')),
 ]
+
+#javascript_settings():
+#    map_points = TrafficLight.objects.all()
+#    print map_points
+#    pointlist = {}
+#    for point in map_points
+#        pointlist.append point
+#    print(pointlist)
+#    return pointlist
