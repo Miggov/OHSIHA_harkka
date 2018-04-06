@@ -13,7 +13,7 @@
         type="text/javascript"></script>
     </head>
     <body>
-        <form action = "app/update/" method = "get" id = "update"> 
+        <form action = "app/update" method = "get" id = "update"> 
         <input type = "submit" class = "button" id = "button1" value = "Lataa tiedot rajapinnasta" name = "updateAPI"></form>
 
 
@@ -54,6 +54,37 @@
             })(marker, i));
           }
         </script>
+
+        <div id="list">
+          {% block title %}
+            <title>Liikennevalot</title>
+          {% endblock %}
+
+          {% block content %}
+          <table id="list">
+            <thead>
+              <tr>
+                <th>Nimi</th>
+                <th>Tila</th>
+                <th>X</th>
+                <th>Y</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for o in objects %}
+              <tr>
+                <td>{{o.name}}</td>
+                <td>{{o.status}}</td>
+                <td>{{o.coordinate_x}}</td>
+                <td>{{o.coordinate_y}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+
+          </table>
+          {% endblock %}
+        </div>
+        
         
     </body>
 </html>
