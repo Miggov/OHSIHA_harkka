@@ -1,0 +1,43 @@
+          function fetch_data() {
+            if (Date.now() - timeout > 1000) {
+              fetch('https://127.0.0.1:8000/app/TrafficLights')
+                .then(res => res.json())
+                .then(data => bars = data)
+                .then(function(bars){
+                  let bounds = map.getBounds();
+                  for (let i=0;i<bars.length;i++){
+                    let latitude = parseFloat(bars[i]['latitude']);
+                    let longitude = parseFloat(bars[i]['longitude']);
+                    let latlng = L.latLng(latitude, longitude);
+                    if (bounds.contains(latlng)){
+                      let circle = L.marker(latlng);
+                      circle.addTo(map);
+                      circle.bindPopup(bars[i]['name']);
+                    }
+                  }
+                })
+                .catch(function(err){
+                  console.log(err);
+                });
+                timeout = Date.now();
+            }
+            var popup = L.popup();
+          }
+
+
+
+
+
+          var circle = L.circle([61.448357, 23.854091], {color: 'red',
+          fillOpacity: 1,
+          radius: 7}).addTo(mymap);
+          var circle = L.circle([61.44835, 23.854307], {color: 'red',
+          fillOpacity: 1,
+          radius: 7}).addTo(mymap);
+          var circle = L.circle([61.448205, 23.854023], {color: 'red',
+          fillOpacity: 1,
+          radius: 7}).addTo(mymap);
+          var circle = L.circle([61.448176, 23.854292], {color: 'red',
+          fillOpacity: 1,
+          radius: 7}).addTo(mymap);
+        

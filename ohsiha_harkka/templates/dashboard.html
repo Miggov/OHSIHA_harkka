@@ -28,6 +28,29 @@
     </div>
     <div id="mapid">
       <script>
+        function load_data() {
+          fetch('http://127.0.0.1:8000/app/TrafficLights')
+            .then(res => res.json())
+            .then(data => TrafficLights = data)
+            .then(function(TrafficLights){
+              let bounds = mymap.getBounds();
+              console.log(bounds)
+              for (let i=0;i<TrafficLights.length;i++){
+                let lat = parseFloat(TrafficLights[i]['coordinate_x']);
+                let lon = parseFloat(TrafficLights[i]['coordinate_y']);
+                let status = parseFloat(TrafficLights[i]['status']);
+                let circle = L.circle([lat, lon], {
+                  color: status,
+                  fillOpacity: 1,
+                  radius: 7}).addTo(mymap);
+                //let latlon = L.latlng(lat, lon);
+               // console.log('iltua');
+              //  if (bounds.contains(latlon)){ 
+               // }
+              }
+            })
+        }
+
         var mymap = L.map('mapid').setView([61.448357, 23.854091], 17); //Setting default centerplace for the map
 
         // Loading gmaps layer
@@ -36,25 +59,14 @@
           subdomains:['mt0','mt1','mt2','mt3']
       }).addTo(mymap);
 
-      var circle = L.circle([61.448357, 23.854091], {color: 'red',
-      fillOpacity: 1,
-      radius: 7}).addTo(mymap);
-      var circle = L.circle([61.44835, 23.854307], {color: 'red',
-      fillOpacity: 1,
-      radius: 7}).addTo(mymap);
-      var circle = L.circle([61.448205, 23.854023], {color: 'red',
-      fillOpacity: 1,
-      radius: 7}).addTo(mymap);
-      var circle = L.circle([61.448176, 23.854292], {color: 'red',
-      fillOpacity: 1,
-      radius: 7}).addTo(mymap);
     
+        mymap.on('moveend', load_data);
+        load_data();
       </script>
     </div>
 
     <div id="forecast">
-      <iframe src="http://forecabox.foreca.com/get/43928" width="300" height="250" marginwidth="0" 
-marginheight="0" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+      <iframe src="http://forecabox.foreca.com/get/43928" width="300" height="250" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
     </div>
 
   </body>

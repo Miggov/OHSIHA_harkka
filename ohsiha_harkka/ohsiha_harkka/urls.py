@@ -22,7 +22,7 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='dashboard.html'), name='dashboard'),
     path('admin/', admin.site.urls),
     path('app/', include('app.urls')),
-    path(r'^api-auth/', include('rest_framework.urls')),
+#    path(r'^api-auth/', include('rest_framework.urls')),
 ]
 
 #javascript_settings():

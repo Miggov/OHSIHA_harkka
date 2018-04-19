@@ -43,7 +43,7 @@ def fetch_status(request):
         dev_obj.name = crossingname + n
         dev_obj.status = status(json_obj["signalGroup"][i]["status"])
         dev_obj.last_updated = json_obj["timestamp"]
-        dev_obj.save()
+        dev_obj.save(update_fields=['status', 'last_updated']) #only updates dynamic fields
         i= i + 1
 
     objects = TrafficLight.objects.all()
