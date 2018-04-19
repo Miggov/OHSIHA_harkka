@@ -36,12 +36,25 @@
           subdomains:['mt0','mt1','mt2','mt3']
       }).addTo(mymap);
 
-      var marker = L.marker([61.448357, 23.854091], {color: 'red'}).addTo(mymap);
-      var marker = L.marker([61.44835, 23.854307]).addTo(mymap);
-      var marker = L.marker([61.448205, 23.854023]).addTo(mymap);
-      var marker = L.marker([61.448176, 23.854292]).addTo(mymap);
+      var circle = L.circle([61.448357, 23.854091], {color: 'red',
+      fillOpacity: 1,
+      radius: 7}).addTo(mymap);
+      var circle = L.circle([61.44835, 23.854307], {color: 'red',
+      fillOpacity: 1,
+      radius: 7}).addTo(mymap);
+      var circle = L.circle([61.448205, 23.854023], {color: 'red',
+      fillOpacity: 1,
+      radius: 7}).addTo(mymap);
+      var circle = L.circle([61.448176, 23.854292], {color: 'red',
+      fillOpacity: 1,
+      radius: 7}).addTo(mymap);
     
       </script>
+    </div>
+
+    <div id="forecast">
+      <iframe src="http://forecabox.foreca.com/get/43928" width="300" height="250" marginwidth="0" 
+marginheight="0" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
     </div>
 
   </body>

@@ -2,6 +2,17 @@ from django.shortcuts import render, redirect
 from .models import TrafficLight
 import requests, json
 
+#Converts API status to English
+def status(status):
+    if status == "B":
+        status = "green"
+        return status
+    elif status == "4":
+        status = "red"
+        return status
+    else:
+        print("Error parsing status, API returned status: ", status)
+        return status
 
 def fetch_status(request):
     main_API = 'http://trafficlights.tampere.fi/api/v1/' #url of main API
@@ -19,7 +30,7 @@ def fetch_status(request):
         dev_obj = TrafficLight()
         n = json_obj["signalGroup"][i]["name"].replace("_", "")
         dev_obj.name = crossingname + n
-        dev_obj.status = json_obj["signalGroup"][i]["status"]
+        dev_obj.status = status(json_obj["signalGroup"][i]["status"])
         dev_obj.last_updated = json_obj["timestamp"]
         dev_obj.save()
         i= i + 1
@@ -27,5 +38,3 @@ def fetch_status(request):
     objects = TrafficLight.objects.all()
     args = {'objects': objects}
     return redirect("/") #render(request, "dashboard.html", args)
-
-
