@@ -1,14 +1,25 @@
 from django.shortcuts import render, redirect
+from rest_framework import viewsets
 from .models import TrafficLight
+from .serializers import TrafficLightSerializer
 import requests, json
+
+
+
+class TrafficlightstatusView(viewsets.ModelViewSet):
+    queryset = TrafficLight.objects.all()
+    serializer_class = TrafficLightSerializer
 
 #Converts API status to English
 def status(status):
-    if status == "B":
+    if status == "A" or status == "B" or status == "C" or status == "E" or status == "G":
+        status = "red"
+        return status
+    elif status == "4" or status == "1" or status == "5":
         status = "green"
         return status
-    elif status == "4":
-        status = "red"
+    elif status == "^" or status == "<" or status == ":":
+        status = "yellow"
         return status
     else:
         print("Error parsing status, API returned status: ", status)

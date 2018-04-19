@@ -9,3 +9,6 @@ class TrafficLight(models.Model):
     status = models.TextField(default="")
     coordinate_x = models.DecimalField(blank=True, null=True, max_digits=8, decimal_places=6)
     coordinate_y = models.DecimalField(blank=True, null=True, max_digits=8, decimal_places=6)
+
+    def __str__(self):
+        return self.name
