@@ -6,7 +6,7 @@ import requests, json
 
 
 
-class TrafficlightstatusView(viewsets.ModelViewSet):
+class TrafficlightstatusView(viewsets.ReadOnlyModelViewSet):
     queryset = TrafficLight.objects.all()
     serializer_class = TrafficLightSerializer
 
