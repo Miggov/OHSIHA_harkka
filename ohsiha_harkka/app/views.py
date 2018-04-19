@@ -12,10 +12,10 @@ class TrafficlightstatusView(viewsets.ReadOnlyModelViewSet):
 
 #Converts API status to English
 def status(status):
-    if status == "A" or status == "B" or status == "C" or status == "E" or status == "G":
+    if status == "A" or status == "B" or status == "C" or status == "E" or status == "G" or status == "H":
         status = "red"
         return status
-    elif status == "4" or status == "1" or status == "5":
+    elif status == "4" or status == "1" or status == "5" or status == "0":
         status = "green"
         return status
     elif status == "^" or status == "<" or status == ":":

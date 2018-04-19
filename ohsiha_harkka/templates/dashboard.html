@@ -33,16 +33,16 @@
             .then(res => res.json())
             .then(data => TrafficLights = data)
             .then(function(TrafficLights){
-              let bounds = mymap.getBounds();
-              console.log(bounds)
+              //let bounds = mymap.getBounds();
               for (let i=0;i<TrafficLights.length;i++){
+                let status = TrafficLights[i]['status'];
+                console.log(status);
                 let lat = parseFloat(TrafficLights[i]['coordinate_x']);
                 let lon = parseFloat(TrafficLights[i]['coordinate_y']);
-                let status = parseFloat(TrafficLights[i]['status']);
                 let circle = L.circle([lat, lon], {
                   color: status,
                   fillOpacity: 1,
-                  radius: 7}).addTo(mymap);
+                  radius: 5}).addTo(mymap);
                 //let latlon = L.latlng(lat, lon);
                // console.log('iltua');
               //  if (bounds.contains(latlon)){ 
