@@ -26,5 +26,4 @@ router.register('TrafficLights', TrafficlightstatusView)   #tahan views. etee?
 urlpatterns = [
     path('', include(router.urls)),
     path('update/', fetch_status, name='update'), # update TrafficLight status
-
 ]
