@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from rest_framework import viewsets
-from .models import TrafficLight
+from .models import TrafficLight, TrafficLightDetectors
 from .serializers import TrafficLightSerializer
 import requests, json
 
@@ -25,6 +25,32 @@ def status(status):
         print("Error parsing status, API returned status: ", status)
         return status
 
+def fetch_trafficdata(request):
+    main_API = 'http://trafficlights.tampere.fi/api/v1/' #url of main API
+    crossingname = 'TRE906'                              #name of crossing device
+    function = 'trafficAmount'                             #device function to be viewed
+    url = main_API + function + '/' + crossingname       #generates url for fetching data
+    print(url)
+    r = requests.get(url)
+    json_data = r.text
+    json_obj = json.loads(json_data)
+
+    devices = len(json_obj["results"])
+    i=0
+    while i < devices:
+        device_name = json_obj["results"][i]["device"]
+        detector_name = json_obj["results"][i]["detector"]
+        trafficAmount = json_obj["results"][i]["trafficAmount"]
+        device_object = TrafficLightDetectors(device=device_name)
+        device_object.detector = detector_name
+        device_object.device = device_name
+        device_object.traffic_amount = trafficAmount
+        device_object.save()
+        i = i + 1
+    objects = TrafficLightDetectors.objects.all()
+    args = {'objects': objects}
+    return
+
 def fetch_status(request):
     main_API = 'http://trafficlights.tampere.fi/api/v1/' #url of main API
     crossingname = 'TRE906'                              #name of crossing device
@@ -48,4 +74,5 @@ def fetch_status(request):
 
     objects = TrafficLight.objects.all()
     args = {'objects': objects}
-    return redirect("/") #render(request, "dashboard.html", args)
+    fetch_trafficdata(request)
+    return redirect("/")
