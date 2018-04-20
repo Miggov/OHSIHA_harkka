@@ -1,14 +1,18 @@
 from django.shortcuts import render, redirect
 from rest_framework import viewsets
 from .models import TrafficLight, TrafficLightDetectors
-from .serializers import TrafficLightSerializer
-import requests, json, time, threading
+from .serializers import TrafficLightSerializer, TrafficAmountSerializer
+import requests, json, time, threading, datetime
 
 
 
 class TrafficlightstatusView(viewsets.ReadOnlyModelViewSet):
     queryset = TrafficLight.objects.all()
     serializer_class = TrafficLightSerializer
+
+class TrafficAmountView(viewsets.ReadOnlyModelViewSet):
+    queryset = TrafficLightDetectors.objects.all()
+    serializer_class = TrafficAmountSerializer
 
 #Converts API status to English
 def status(status):
@@ -44,8 +48,9 @@ def fetch_trafficdata(): #Loads traffic amount every 15 minutes
         i = i + 1
     device_object = TrafficLightDetectors()
     device_object.crossingname = crossingname
-    device_object.timestamp = json_obj["responseTs"]
+    device_object.timestamp = datetime.datetime.strptime(json_obj["responseTs"], '%Y-%m-%dT%H:%M:%S+%f:00')
     device_object.traffic_amount = trafficAmount
+#    device_object.reliable_value = reliableValue
     device_object.save()
     print(time.ctime())
     threading.Timer(900, fetch_trafficdata).start()

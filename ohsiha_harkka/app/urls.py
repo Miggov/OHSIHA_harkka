@@ -16,12 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
-from .views import fetch_status, TrafficlightstatusView
+from .views import fetch_status, TrafficlightstatusView, TrafficAmountView
 from django.conf.urls import url, include
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register('TrafficLights', TrafficlightstatusView)   #tahan views. etee?
+router.register('TrafficLights', TrafficlightstatusView)
+router.register('TrafficAmount', TrafficAmountView)
 
 urlpatterns = [
     path('', include(router.urls)),

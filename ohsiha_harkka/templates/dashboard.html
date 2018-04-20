@@ -36,7 +36,6 @@
               //let bounds = mymap.getBounds();
               for (let i=0;i<TrafficLights.length;i++){
                 let status = TrafficLights[i]['status'];
-                console.log(status);
                 let lat = parseFloat(TrafficLights[i]['coordinate_x']);
                 let lon = parseFloat(TrafficLights[i]['coordinate_y']);
                 let circle = L.circle([lat, lon], {
@@ -63,6 +62,58 @@
         mymap.on('moveend', load_data);
         load_data();
       </script>
+    </div>
+
+    <div id="chart_div">
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script type="text/javascript">
+        google.charts.load('current', {packages: ['corechart', 'line']});
+        google.charts.setOnLoadCallback(drawBackgroundColor);
+        
+        function drawBackgroundColor() {
+              var data = new google.visualization.DataTable();
+              data.addColumn('date', 'X');
+              data.addColumn('number', 'Liikennemäärä');
+
+              function load_trafficdata() {
+                fetch('http://127.0.0.1:8000/app/TrafficAmount')
+                  .then(res => res.json())
+                  .then(data => TrafficAmount = data)
+                  .then(function(TrafficAmount){
+                    for (let i=0;i<TrafficAmount.length;i++){ // && i>50
+                      let time = TrafficAmount[i]['timestamp'];
+                      let tramount = parseFloat(TrafficAmount[i]['traffic_amount']);
+                      data.addRows([[new Date(time), tramount]]);
+                      console.log(tramount);
+                    }})}
+         //    data.addRows([
+         //       [new Date("2018-04-20 02:18:43.030000"), 960],
+         //       [new Date("2018-04-20 02:19:28.030000"), 900],
+         //       [new Date("2018-04-20 02:23:44.030000"), 840],
+         //       [new Date("2018-04-20 02:24:45.030000"), 780],
+         //       [new Date("2018-04-20 02:26:03.030000"), 720],
+         //       [new Date("2018-04-20 02:41:03.030000"), 660],
+         //       [new Date("2018-04-20 02:47:48.030000"), 1020],
+         //       [new Date("2018-04-20 03:02:48.030000"), 480],
+         //       [new Date("2018-04-20 03:11:10.030000"), 780],
+         //       [new Date("2018-04-20 03:26:10.030000"), 720],
+        //        [new Date("2018-04-20 03:41:10.030000"), 480]
+        //      ]);
+              load_trafficdata();
+
+              var options = {
+                hAxis: {
+                  title: 'Aika'
+                },
+                vAxis: {
+                  title: 'Autoa tunnissa'
+                },
+             //   backgroundColor: '#f1f8e9'
+              };
+        
+              var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+              chart.draw(data, options);
+            }</script>
     </div>
 
     <div id="forecast">

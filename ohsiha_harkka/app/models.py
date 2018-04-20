@@ -20,4 +20,4 @@ class TrafficLightDetectors(models.Model):
     realiable_value = models.IntegerField(blank=True, null=True, default=None)
 
     def __str__(self):
-        return self.detector
+        return self.timestamp
