@@ -1,6 +1,7 @@
+Mikko Vaaranmäki
 # Harjoitustyö vaihe 4: Datan visualisointi
 
-Harjoitustyön neljännessä vaiheessa kesityin lisädatan hankintaan ja visualisointiin. Hain Tampereen liikennevalorajapinnasta myös tietoja liikennevirrasta.
+Harjoitustyön neljännessä vaiheessa keskityin lisädatan hankintaan ja visualisointiin. Hain Tampereen liikennevalorajapinnasta myös tietoja liikennevirrasta.
 
 ## Kertaus käytössä olevista teknologioista ja y
 -Python 3.6.4
@@ -131,7 +132,7 @@ Dashboardilla näkyy tällä hetkellä siis liikennemäärän muutos sekä liike
 ![alt text](https://lh3.googleusercontent.com/VAN_OHERw86mi_gBNt6363kSiAcLWu95a5xIX6XVGycke72Qvv64Znnj87uXGjB0Np_LPM0JcszJriCZ9I48kVxdgLTXHmYbZgbf0t4phe3GXvCRy-Z_YAi6bijnmsj2Esgl4iHB3dXg4yOe6dLLK73RmC77FmjMnxK9XoMN0qUcnoNMsJXuY79AzFtp5qzPz84Gd_-_Pj6o-P5N1ko_bvpH_pNT1UGRkEZTgOfsm0JkHGspCR2pdkccqPCnlzP1JnyHgU3hssLOyuTK53amS7Cixl2ol4tqgCqXr2fVxQ8fIbqriXu53U_rnTRG2hzByfJdOkHHrs4JWV8tnBqyQ-eiWSFxbs3Q-Fvv8595RF87zXAv5pYllx1NjVekVwwlWk4ReIJpfChS_w7Ker-iwyosnkruKSNT7aAoEp2hiMh6E41zIpLssQq1V_jCfWzDooENjFZxOIfLSLZrSKIqE5k-rc5NY1VC5pfcRNGl0yi-smv3B4dVy_qeO7dbE0Flmtf5oy7zcva1eNZ1m9IbGgpm5OHnYQ_rekBwYP2AbkcseIBVAH0t_rLOflaRSimcbdtWN1sqg1qnJ22SrxKJEZ4t5Uf89VTXczTD4XQ=w1062-h608-no)
 
 ## Helpot ja hankalat
-Vaikeimmaksi osoittautui jälleen kerran datan pyörittely javascript muotoisen visualisoinnin ymmärrettäväksi kun omat javasriptitaidot ovat aika nollassa. Jonkinverran tätä prosessia suoraviivaisti mielestäni REST rajapinnan käyttöönotto. Aikaa paloi jälleen kryptisen rajapinnan selvittelyyn eikä tulkintani aivan välttämättä ole oikein, mutta ehkä on kuitenkin paras siirtyä eteenpäin jotta harkka tulisi joskus valmiiksikin. Lopuksi vielä ote omasta tulkinnastani rajapinnan palauttamien statuksien tulkkaamisessa:
+Vaikeimmaksi osoittautui jälleen kerran datan pyörittely javascript muotoisen visualisoinnin ymmärrettäväksi, kun omat javascriptitaidot ovat aika nollassa. Jonkin verran tätä prosessia suoraviivaisti mielestäni REST rajapinnan käyttöönotto, joka oli lopulta melko suoraviivainen prosessi hyvien ohjeiden ansiosta. Tässä kohtaa tosin tapoja oli useampia ja oikean tavan valinta hieman hidasti tahtia. Aikaa paloi jälleen kryptisen rajapinnan selvittelyyn eikä tulkintani aivan välttämättä ole oikein, mutta ehkä on kuitenkin paras siirtyä eteenpäin, jotta harkka tulisi joskus valmiiksikin. Lopuksi vielä ote omasta tulkinnastani rajapinnan palauttamien statuksien tulkkaamisessa:
 ```
 #Converts API status to English
 def status(status):
