@@ -50,7 +50,7 @@ def fetch_trafficdata(): #Loads traffic amount every 15 minutes
     device_object.crossingname = crossingname
     device_object.timestamp = datetime.datetime.strptime(json_obj["responseTs"], '%Y-%m-%dT%H:%M:%S+%f:00')
     device_object.traffic_amount = trafficAmount
-#    device_object.reliable_value = reliableValue
+    device_object.realiable_value = reliableValue
     device_object.save()
     print(time.ctime())
     threading.Timer(900, fetch_trafficdata).start()

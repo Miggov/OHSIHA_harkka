@@ -25,11 +25,3 @@ urlpatterns = [
 #    path(r'^api-auth/', include('rest_framework.urls')),
 ]
 
-#javascript_settings():
-#    map_points = TrafficLight.objects.all()
-#    print map_points
-#    pointlist = {}
-#    for point in map_points
-#        pointlist.append point
-#    print(pointlist)
-#    return pointlist
