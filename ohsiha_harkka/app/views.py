@@ -43,8 +43,16 @@ def fetch_trafficdata(): #Loads traffic amount every 15 minutes
     reliableValue = 0
     i=0
     while i < devices:
-        trafficAmount += json_obj["results"][i]["trafficAmount"]
-        reliableValue += json_obj["results"][i]["reliabValue"]
+        tramount = json_obj["results"][i]["trafficAmount"]
+        if tramount == None:
+            trafficAmount += 0
+        else:
+            trafficAmount += tramount 
+        rvalue = json_obj["results"][i]["reliabValue"]
+        if rvalue == None:
+            reliableValue += 0
+        else:
+            reliableValue += rvalue
         i = i + 1
     device_object = TrafficLightDetectors()
     device_object.crossingname = crossingname
