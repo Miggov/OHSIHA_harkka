@@ -52,7 +52,7 @@ def fetch_trafficdata(): #Loads traffic amount every 15 minutes
     device_object.traffic_amount = trafficAmount
     device_object.realiable_value = reliableValue
     device_object.save()
-    print(time.ctime())
+    print("Trafficdata loaded ", time.ctime())
     threading.Timer(900, fetch_trafficdata).start()
     return
 
