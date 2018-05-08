@@ -105,5 +105,5 @@ def timer():
     t.start()
 
 
+#timer()
 fetch_trafficdata()
-timer()
