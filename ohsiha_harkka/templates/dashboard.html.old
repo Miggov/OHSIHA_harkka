@@ -87,25 +87,6 @@
 
       <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto">
         <script>
-          fetch('http://127.0.0.1:8000/app/TrafficAmount')
-          .then(res => res.json())
-          .then(parseData)
-          .then(initChart)
-
-          function parseData(data) {
-            var arr = [];
-            
-            for (let i=0;i<data.length;i++){
-              let time = data[i]['timestamp'];
-              let tramount = parseFloat(data[i]['traffic_amount']);
-              var subarr = ([Date(time), tramount]);
-              arr.push(subarr);
-            }
-
-            return arr;
-          }
-
-          function initChart(array) {
             Highcharts.setOptions({
                 global: {
                     useUTC: false
@@ -162,10 +143,25 @@
                 },
                 series: [{
                     name: 'Random data',
-                    data: array
+                    data: (function() {
+                      var arr = [];
+                      return fetch('http://127.0.0.1:8000/app/TrafficAmount')
+                        .then(res => res.json())
+                      //  .then(data => TrafficAmount = data)
+                        .then(function(TrafficAmount){
+                        //  console.log(TrafficAmount.length)
+                          for (let i=0;i<TrafficAmount.length;i++){ // && i>50
+                            let time = TrafficAmount[i]['timestamp'];
+                            let tramount = parseFloat(TrafficAmount[i]['traffic_amount']);
+                            var subarr = ([Date(time), tramount]);
+                            arr.push(subarr);
+                          }
+                          console.log(arr);                            
+                          return arr;
+                        }) 
+                        }())
                 }]
             });
-          }
         </script>
       </div>
 
