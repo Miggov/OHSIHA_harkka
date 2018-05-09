@@ -1,0 +1,78 @@
+{% extends 'dashboard.html' %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div class='container-fluid'>
+            <div class='row'>
+              <div class='col'>
+                <div id="chart_div">
+                  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                  <script type="text/javascript">
+                    google.charts.load('current', {packages: ['corechart', 'line']});
+                    google.charts.setOnLoadCallback(drawBackgroundColor);
+                    
+                    function drawBackgroundColor() {
+                          var visu = new google.visualization.DataTable();
+                          visu.addColumn('date', 'X');
+                          visu.addColumn('number', 'Liikennemäärä');
+    
+                          function load_trafficdata() {
+                            fetch('http://127.0.0.1:8000/app/TrafficAmount')
+                              .then(res => res.json())
+                              .then(data => TrafficAmount = data)
+                              .then(function(TrafficAmount){
+                                for (let i=0;i<TrafficAmount.length;i++){ // && i>50
+                                  let time = TrafficAmount[i]['timestamp'];
+                                  let tramount = parseFloat(TrafficAmount[i]['traffic_amount']);
+                                  visu.addRows([[new Date(time), tramount]]);
+                                  console.log(tramount);
+                                }})}
+                        function kii() {
+                          visu.addRows([
+                            [new Date("2018-04-20 02:18:43.030000"), 960],
+                            [new Date("2018-04-20 02:19:28.030000"), 900],
+                            [new Date("2018-04-20 02:23:44.030000"), 840],
+                            [new Date("2018-04-20 02:24:45.030000"), 780],
+                            [new Date("2018-04-20 02:26:03.030000"), 720],
+                            [new Date("2018-04-20 02:41:03.030000"), 660],
+                            [new Date("2018-04-20 02:47:48.030000"), 1020],
+                            [new Date("2018-04-20 03:02:48.030000"), 480],
+                            [new Date("2018-04-20 03:11:10.030000"), 780],
+                            [new Date("2018-04-20 03:26:10.030000"), 720],
+                            [new Date("2018-04-20 03:41:10.030000"), 480]
+                          ]);}
+                      //   load_trafficdata();
+                          kii();
+    
+                          var options = {
+                            hAxis: {
+                              title: 'Aika'
+                            },
+                            vAxis: {
+                              title: 'Autoa tunnissa'
+                            },
+                            curveType: 'function',
+                      legend: { position: 'bottom' }
+    
+                        //   backgroundColor: '#f1f8e9'
+                          };
+                    
+                          var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+                          chart.draw(visu, options);
+                        }</script>
+                </div>
+              </div>
+            </div>
+          </div>
+    </body>
+</html>

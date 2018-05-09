@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from rest_framework import viewsets
 from .models import TrafficLight, TrafficLightDetectors
 from .serializers import TrafficLightSerializer, TrafficAmountSerializer
-import requests, json, time, threading, datetime
+from datetime import datetime as dt
+from threading import Timer
+import requests, json, time, datetime, threading
 
 
 
@@ -88,4 +90,20 @@ def fetch_status(request):
     args = {'objects': objects}
     return redirect("/")
 
+def truncate_trafficdata():
+    TrafficLightDetectors.objects.all().delete()
+    print("Trafficdata truncated ", time.ctime())
+
+def timer():
+    x=dt.today()
+    y=x.replace(day=x.day+1, hour=1, minute=0, second=0, microsecond=0)
+    delta_t=y-x
+
+    secs=delta_t.seconds+1
+
+    t = Timer(secs, truncate_trafficdata())
+    t.start()
+
+
+#timer()
 fetch_trafficdata()
