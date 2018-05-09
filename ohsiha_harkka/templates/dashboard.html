@@ -42,14 +42,12 @@
                       let status = TrafficLights[i]['status'];
                       let lat = parseFloat(TrafficLights[i]['coordinate_x']);
                       let lon = parseFloat(TrafficLights[i]['coordinate_y']);
-                      let circle = L.circle([lat, lon], {
-                        color: status,
-                        fillOpacity: 1,
-                        radius: 5}).addTo(mymap);
-                      //let latlon = L.latlng(lat, lon);
-                    // console.log('iltua');
-                    //  if (bounds.contains(latlon)){ 
-                    // }
+                      if (lat !== 'NaN'){
+                        let circle = L.circle([lat, lon], {
+                          color: status,
+                          fillOpacity: 1,
+                          radius: 5}).addTo(mymap);
+                      }
                     }
                   })
               }
