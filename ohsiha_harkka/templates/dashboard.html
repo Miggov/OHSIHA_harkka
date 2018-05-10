@@ -33,7 +33,7 @@
           <div id="mapid">
             <script>
               function load_data() {
-                fetch('http://127.0.0.1:8000/app/TrafficLights')
+                fetch('https://liikennevaloharkkatyo.herokuapp.com/app/TrafficLights/') //tuotanto: https://liikennevaloharkkatyo.herokuapp.com/app/TrafficLights/
                   .then(res => res.json())
                   .then(data => TrafficLights = data)
                   .then(function(TrafficLights){
@@ -68,7 +68,8 @@
         </div>
         <div class="col-3" style="min-width": 300px>
             <div id="forecast">
-                <iframe src="http://forecabox.foreca.com/get/43928" width="300" height="250" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+              <iframe src="https://forecabox.foreca.com/get/43985" width="300" height="250" marginwidth="0" 
+              marginheight="0" frameborder="0" scrolling="no" allowtransparency="true"></iframe>              
               </div>
               <div class='row'>
                   <div class='col-4 col-offset-4'>
@@ -85,7 +86,7 @@
 
       <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto">
         <script>
-          fetch('http://127.0.0.1:8000/app/TrafficAmount')
+          fetch('https://liikennevaloharkkatyo.herokuapp.com/app/TrafficAmount') //tuotanto: https://liikennevaloharkkatyo.herokuapp.com/app/TrafficAmount/
           .then(res => res.json())
           .then(parseData)
           .then(initChart)
